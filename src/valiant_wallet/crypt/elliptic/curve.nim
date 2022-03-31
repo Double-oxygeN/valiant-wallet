@@ -43,7 +43,7 @@ proc toCompressed*(po: Point): BigInt =
 proc toUncompressed*(cur: Curve, po: Point): BigInt {.inline.} =
     ## get the uncompressed format of the point
     let nbits = cur.params.BitSize
-    return (((0x04.initBigInt shl nbits) + po.x) shl nbits) + po.y
+    return (((0x04.initBigInt shl nbits) or po.x) shl nbits) or po.y
 
 proc decomposite*(cur: Curve, po: BigInt): Point {.inline.} =
     ## decomposite the point
