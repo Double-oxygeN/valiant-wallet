@@ -97,8 +97,8 @@ proc doubledJacobian(cur: Curve, p1: Point, z1: BigInt): (Point, BigInt) {.inlin
     let e = a + a + a
     let f = e * e
     let x3 = f - d - d
-    let y3 = e * (d - x3) - c * 8.b
-    let z3 = p1.y * z1 * 2.b
+    let y3 = e * (d - x3) - (c shl 3)
+    let z3 = p1.y * z1 shl 1
 
     return (Point(x: x3, y: y3) mod cur.params.P, z3 mod cur.params.P)
 
